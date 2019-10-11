@@ -458,11 +458,17 @@ static BOXContentClient *defaultInstance = nil;
 
 # pragma mark - background tasks support
 
-+ (void)oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate rootCacheDir:(nonnull NSString *)rootCacheDir completion:(void (^)(NSError *error))completionBlock;
++ (void)oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate
+                                                 rootCacheDir:(nonnull NSString *)rootCacheDir
+                     shouldSetUpReconnectedBackgroundSessions:(BOOL)shouldSetUpReconnectedBackgroundSessions
+                                                   completion:(void (^)(NSError *error))completionBlock;
 {
     [[BOXContentClient defaultClient] setUpTemporaryCacheDirectory:rootCacheDir];
     rootCacheDir = [rootCacheDir stringByAppendingPathComponent:BOXSessionManagerCacheClientFolder];
-    [[BOXURLSessionManager sharedInstance] oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:delegate rootCacheDir:rootCacheDir completion:completionBlock];
+    [[BOXURLSessionManager sharedInstance] oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:delegate
+                                                                                    rootCacheDir:rootCacheDir
+                                                        shouldSetUpReconnectedBackgroundSessions:shouldSetUpReconnectedBackgroundSessions
+                                                                                      completion:completionBlock];
 }
 
 + (void)oneTimeSetUpInExtensionToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate rootCacheDir:(nonnull NSString *)rootCacheDir sharedContainerIdentifier:(NSString *)sharedContainerIdentifier completion:(void (^)(NSError *error))completionBlock;

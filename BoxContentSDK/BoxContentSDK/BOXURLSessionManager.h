@@ -96,10 +96,12 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend;
  *
  * @param delegate          used for encrypting/decrypting metadata cached for background session tasks
  * @param rootCacheDir      root directory for caching background session tasks' data
+ * @param shouldSetUpReconnectedBackgroundSessions  whether this should also set up the previously reconnected background sessions
  * @param completionBlock   block to execute upon completion of setup, indicating background tasks can be provided
  */
 - (void)oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate
                                                  rootCacheDir:(NSString *)rootCacheDir
+                   shouldSetUpReconnectedBackgroundSessions:(BOOL)shouldSetUpReconnectedBackgroundSessions
                                                    completion:(nullable void (^)( NSError * _Nullable error))completionBlock;
 
 /**
@@ -188,8 +190,8 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend;
 
  @return a background upload task. Nil if already completed, or failed to get one because
  background session has not finished setting up. Wait for completionBlock of
- oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:rootCacheDir:completion in main app or
- oneTimeSetUpInExtensionToSupportBackgroundTasksWithDelegate:rootCacheDir:completion
+ oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:rootCacheDir:shouldSetUpReconnectedBackgroundSessions:completion
+ in main app or oneTimeSetUpInExtensionToSupportBackgroundTasksWithDelegate:rootCacheDir:completion
  */
 - (NSURLSessionUploadTask *)backgroundUploadTaskWithRequest:(NSURLRequest *)request
                                                    fromFile:(NSURL *)fileURL

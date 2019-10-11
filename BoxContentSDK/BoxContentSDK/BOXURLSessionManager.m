@@ -219,6 +219,7 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
 
 - (void)oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate
                                                  rootCacheDir:(NSString *)rootCacheDir
+                     shouldSetUpReconnectedBackgroundSessions:(BOOL)shouldSetUpReconnectedBackgroundSessions
                                                    completion:(nullable void (^)(NSError * _Nullable error))completionBlock
 {
     //used by main app to create and reuse one background NSURLSession
@@ -229,14 +230,15 @@ static NSString *backgroundSessionIdentifierForMainApp = @"com.box.BOXURLSession
                                                          rootCacheDir:rootCacheDir
                                             sharedContainerIdentifier:nil
                                                            completion:completionBlock];
+    if (shouldSetUpReconnectedBackgroundSessions) {
+        //setting up previously reconnected background sessions
+        NSError *error = nil;
+        NSArray *extensionSessionIds = [self.cacheClient backgroundSessionIDsReconnectedToAppWithError:&error];
+        BOXAssert(error == nil, @"Failed to retrieve backgroundSessionIds from extensions with error %@", error);
 
-    //setting up previously reconnected background sessions
-    NSError *error = nil;
-    NSArray *extensionSessionIds = [self.cacheClient backgroundSessionIDsReconnectedToAppWithError:&error];
-    BOXAssert(error == nil, @"Failed to retrieve backgroundSessionIds from extensions with error %@", error);
-
-    for (NSString *extensionSessionId in extensionSessionIds) {
-        [self reconnectWithBackgroundSessionIdFromExtension:extensionSessionId completion:nil];
+        for (NSString *extensionSessionId in extensionSessionIds) {
+            [self reconnectWithBackgroundSessionIdFromExtension:extensionSessionId completion:nil];
+        }
     }
 }
 

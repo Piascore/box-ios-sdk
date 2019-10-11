@@ -225,6 +225,7 @@ extern NSString *const BOXContentClientBackgroundTempFolder;
  */
 + (void)oneTimeSetUpInAppToSupportBackgroundTasksWithDelegate:(id<BOXURLSessionManagerDelegate>)delegate
                                                  rootCacheDir:(NSString *)rootCacheDir
+                     shouldSetUpReconnectedBackgroundSessions:(BOOL)shouldSetUpReconnectedBackgroundSessions
                                                    completion:(void (^)(NSError *error))completionBlock;
 
 /**
