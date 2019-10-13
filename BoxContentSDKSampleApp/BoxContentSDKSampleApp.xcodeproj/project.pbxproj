@@ -410,6 +410,7 @@
 					};
 					C5745C231A5AF6CC00824FFA = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = M343ZJ9LAZ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -608,7 +609,7 @@
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_ENTITLEMENTS = BoxContentSDKSampleApp/BoxContentSDKSampleApp.entitlements;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = M343ZJ9LAZ;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "BoxContentSDKSampleApp/BoxContentSDKSampleApp-Prefix.pch";
@@ -748,7 +749,7 @@
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_ENTITLEMENTS = BoxContentSDKSampleApp/BoxContentSDKSampleApp.entitlements;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = M343ZJ9LAZ;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "BoxContentSDKSampleApp/BoxContentSDKSampleApp-Prefix.pch";
