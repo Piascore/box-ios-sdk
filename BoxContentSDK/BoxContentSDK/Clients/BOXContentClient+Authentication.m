@@ -222,7 +222,8 @@
             }
         }];
         //UIViewController *rootViewController = [[[[UIApplication box_sharedApplication] delegate] window] rootViewController];
-        UIViewController *rootViewController = [UIApplication box_sharedApplication].keyWindow.rootViewController; // For supporting iPaadOS's multi views
+        UIViewController *rootViewController = [UIApplication box_sharedApplication].keyWindow.rootViewController; // For supporting iPadOS's multi views
+        //NSLog(@"Box %@", rootViewController);
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:authorizationController];
         navController.modalPresentationStyle = UIModalPresentationFormSheet;
         // if there are presented view controllers, we need to present the auth controller on the topmost presented view controller
